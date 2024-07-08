@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>City Management</title>
+        <script>
+            function showForm(action) {
+                document.getElementById("searchForm").style.display = "none";
+                document.getElementById("addForm").style.display = "none";
+                document.getElementById("listForm").style.display = "none";
+
+                if (action === "searchInhabitant") {
+                    document.getElementById("searchForm").style.display = "block";
+                } else if (action === "addInhabitant") {
+                    document.getElementById("addForm").style.display = "block";
+                } else if (action === "listInhabitants") {
+                    document.getElementById("listForm").style.display = "block";
+                }
+            }
+        </script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>City Management System</h1>
+        <!-- drop down menu -->
+        <label for="actionSelect">Choose from drop down</label>
+        <select id="actionSelect" onchange="showForm(this.value)">
+            <option value="">Select</option>
+            <option value="searchInhabitant">Search Inhabitant</option>
+            <option value="addInhabitant">Add Inhabitant</option>
+            <option value="listInhabitants">List Inhabitants</option>
+        </select>
+
+        <div id="searchForm" style="display:none;">
+        <h2>Search Inhabitant</h2>
+        <form action="CityServlet" method="get">
+            <input type="hidden" name="action" value="searchInhabitant">
+            <label for="cityName">City Name:</label>
+            <input type="text" id="cityName" name="cityName" required>
+            <label for="inhabitantName">Inhabitant Name:</label>
+            <input type="text" id="inhabitantName" name="inhabitantName" required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+        <div id="addForm" style="display:none;">
+            <h2>Add Inhabitant</h2>
+            <form action="CityServlet" method="post">
+                <input type="hidden" name="action" value="addInhabitant">
+                <label for="cityNameAdd">City Name:</label>
+                <input type="text" id="cityNameAdd" name="cityName" required>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="dob">Date of Birth:</label>
+                <input type="text" id="dob" name="dob" required>
+                <label for="maritalStatus">Marital Status:</label>
+                <input type="text" id="maritalStatus" name="maritalStatus" required>
+                <button type="submit">Add Inhabitant</button>
+            </form>
+        </div>
+
+        <div id="listForm" style="display:none;">
+            <h2>List Inhabitants</h2>
+            <form action="CityServlet" method="get">
+                <input type="hidden" name="action" value="listInhabitants">
+                <label for="cityNameList">City Name:</label>
+                <input type="text" id="cityNameList" name="cityName" required>
+                <button type="submit">List Inhabitants</button>
+            </form>
+        </div>
+
+        <!--        <div>TODO write content</div>
+                <div>TODO write content</div>-->
+    </body>
+</html>
